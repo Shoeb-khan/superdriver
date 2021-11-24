@@ -13,6 +13,7 @@ class OrderController extends ControllerMVC {
   List<OrderList> orders = <OrderList>[];
   GlobalKey<ScaffoldState> scaffoldKey;
   Payment paymentData =  new Payment();
+  String mobileno;
   OrderController() {
 
     this.scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -71,13 +72,23 @@ class OrderController extends ControllerMVC {
     }
   }
 
-  sendOTP(orderId,mobile) async {
+  sendOTP(orderId,mobile,action) async {
 
     repository.sendOtpStatus(mobile, orderId).then((value) {
       if(value) {
-        String delivered ='Delivered';
-        Navigator.of(context).pushNamed(
-            '/Otp', arguments: orderId);
+        if(action ==1) {
+          String delivered = 'Delivered';
+          Navigator.of(context).pushNamed(
+              '/Otp', arguments: orderId);
+        }
+        else {
+          Fluttertoast.showToast(
+            msg: 'OTP Resend Successfully',
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 5,
+          );
+        }
       }
       else {
         Fluttertoast.showToast(
@@ -99,6 +110,8 @@ class OrderController extends ControllerMVC {
 
       if(value) {
         updateData(orderId, status);
+        
+        Navigator.of(context).pushNamed('/OrderHistory');
 
         Fluttertoast.showToast(
           msg: 'Order is  ' + status + ' successfully',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:products_deliveryboy/src/pages/loginPage.dart';
 import 'package:products_deliveryboy/src/pages/map.dart';
+import 'package:products_deliveryboy/src/pages/orders_history.dart';
 import 'package:products_deliveryboy/src/pages/otp_verification.dart';
 import 'package:products_deliveryboy/src/pages/register.dart';
 import 'package:products_deliveryboy/src/pages/topup.dart';
@@ -16,6 +17,7 @@ class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     // Getting arguments passed in while calling Navigator.pushNamed
     final args = settings.arguments;
+    // final List<dynamic> args1 = settings.arguments;
     switch (settings.name) {
       case '/Splash':
         return MaterialPageRoute(builder: (_) => SplashScreen());
@@ -43,9 +45,11 @@ class RouteGenerator {
       case '/Map':
         return MaterialPageRoute(builder: (_) => MapWidget(orderDetails: args,));
       case '/Otp':
-        return MaterialPageRoute(builder: (_) => OtpVerification(orderId: args,));
+        return MaterialPageRoute(builder: (_) => OtpVerification(orderId: args));
+      case '/OrderHistory':
+        return MaterialPageRoute(builder: (_) => OrdersHistoryWidget());
       default:
-        // If there is no such named route in the switch statement, e.g. /third
+        // If there is no such named route in the switch statement, e.g. /thi
         return MaterialPageRoute(builder: (_) => Scaffold(body: SizedBox(height: 0)));
     }
   }

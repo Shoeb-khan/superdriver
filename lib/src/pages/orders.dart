@@ -88,7 +88,7 @@ class _OrdersWidgetState extends StateMVC<OrdersWidget> {
                             child: InkWell(
                               onTap: () {
                                 Navigator.of(context)
-                                    .pushNamed('/OrderDetails');
+                                    .pushNamed('/OrderDetails',arguments: "${course['orderId']}");
                               },
                               child: Container(
                                 child: Row(
@@ -132,119 +132,346 @@ class _OrdersWidgetState extends StateMVC<OrdersWidget> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
-                                                      Container(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 15,
-                                                                right: 15,
-                                                                top: 20),
-                                                        child:
-                                                            CachedNetworkImage(
-                                                          imageUrl:
-                                                              "${GlobalConfiguration().getString('base_upload')}uploads/vendor_image/vendor_${course['shopId']}.png",
-                                                          placeholder: (context,
-                                                                  url) =>
-                                                              CircularProgressIndicator(),
-                                                          errorWidget: (context,
-                                                                  url, error) =>
-                                                              Icon(Icons.error),
-                                                          height: 70,
-                                                          width: 70,
-                                                        ),
-                                                      ),
-                                                      Expanded(
-                                                        child: Container(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    left: 10,
-                                                                    right: 15,
-                                                                    top: 40),
-                                                            child: Text(
-                                                              course['status'],
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .subtitle1
-                                                                  .merge(TextStyle(
-                                                                      color: Theme.of(
-                                                                              context)
-                                                                          .primaryColorDark)),
-                                                            )),
-                                                      ),
+
                                                       Column(
                                                           crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .end,
+                                                          CrossAxisAlignment
+                                                              .end,
                                                           children: [
                                                             Container(
                                                               padding: EdgeInsets
                                                                   .only(
-                                                                      left: 15,
-                                                                      right: 15,
-                                                                      top: 20),
+                                                                  left: 15,
+                                                                  right: 15,
+                                                                  top: 20),
                                                               child: Text(
                                                                   '#${course['orderId']}',
                                                                   style: Theme.of(
-                                                                          context)
+                                                                      context)
                                                                       .textTheme
                                                                       .headline3),
                                                             ),
                                                             Container(
                                                               padding:
-                                                                  EdgeInsets
-                                                                      .only(
+                                                              EdgeInsets
+                                                                  .only(
                                                                 left: 15,
                                                                 right: 15,
                                                               ),
                                                               child: Text(
-                                                                  '2 Mins',
+                                                                  '',
                                                                   style: Theme.of(
-                                                                          context)
+                                                                      context)
                                                                       .textTheme
                                                                       .caption
                                                                       .merge(TextStyle(
-                                                                          color: Theme.of(context)
-                                                                              .primaryColorDark,
-                                                                          fontWeight:
-                                                                              FontWeight.w600))),
+                                                                      color: Theme.of(context)
+                                                                          .primaryColorDark,
+                                                                      fontWeight:
+                                                                      FontWeight.w600))),
                                                             ),
                                                           ]),
+                                                      Container(
+                                                          padding:
+                                                          EdgeInsets.only(
+                                                              left: 10,
+                                                              right: 10,
+                                                              top: 20),
+                                                          child: Text(
+                                                            course['status'],
+                                                            style: Theme.of(
+                                                                context)
+                                                                .textTheme
+                                                                .subtitle1
+                                                                .merge(TextStyle(
+                                                                color: Theme.of(
+                                                                    context)
+                                                                    .primaryColorDark)),
+                                                          )),
+
+
                                                     ],
                                                   ),
-                                                  Container(
-                                                      padding: EdgeInsets.only(
-                                                          left: 15,
-                                                          bottom: 10,
-                                                          right: 15,
-                                                          top: 10),
-                                                      child: Column(children: [
-                                                        Container(
-                                                            child: Text(
-                                                          course['shopName'],
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .headline3,
-                                                        )),
-                                                        Container(
-                                                            child: Text(
-                                                          '',
-                                                          style: Theme.of(
-                                                                  context)
-                                                              .textTheme
-                                                              .bodyText1
-                                                              .merge(TextStyle(
-                                                                  fontFamily:
-                                                                      'ProductSans-Thin')),
-                                                        ))
-                                                      ])),
+
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Container(
+                                                          padding:
+                                                          EdgeInsets.only(
+                                                              left: 10,
+                                                              right: 10,
+                                                              top: 20),
+                                                          child: Text(
+                                                            "PickUp Detials",
+                                                            style: Theme.of(
+                                                                context)
+                                                                .textTheme
+                                                                .subtitle1
+                                                                .merge(TextStyle(
+                                                                color: Colors.black)),
+                                                          )),
+                                                      Container(
+                                                          padding:
+                                                          EdgeInsets.only(
+                                                              left: 10,
+                                                              right: 10,
+                                                              top: 20),
+                                                          child: Text(
+                                                            'Delivery Detials',
+                                                            style: Theme.of(
+                                                                context)
+                                                                .textTheme
+                                                                .subtitle1
+                                                                .merge(TextStyle(
+                                                                color: Colors.black)),
+                                                          )),
+                                                    ],
+                                                  ),
+
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Column(
+                                                          children: [
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                              crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                              children: [
+                                                                Container(
+                                                                  padding:
+                                                                  EdgeInsets.only(
+                                                                      left: 15,
+                                                                      right: 15,
+                                                                      top: 20),
+                                                                  child:
+                                                                  CachedNetworkImage(
+                                                                    imageUrl:
+                                                                    "${GlobalConfiguration().getString('base_upload')}uploads/vendor_image/vendor_${course['shopId']}.png",
+                                                                    imageBuilder: (context, imageProvider) => Container(
+                                                                      height: MediaQuery.of(context).size.width*0.12,
+                                                                      width: MediaQuery.of(context).size.width*0.12,
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                                                                        image: DecorationImage(
+                                                                          image: imageProvider,
+                                                                          fit: BoxFit.cover,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    placeholder: (context,
+                                                                        url) =>
+                                                                        CircularProgressIndicator(),
+                                                                    errorWidget: (context,
+                                                                        url, error) =>
+                                                                        Icon(Icons.error),
+                                                                    height: 70,
+                                                                    width: 70,
+                                                                  ),
+                                                                ),
+                                                                Expanded(
+                                                                  child: Container(
+                                                                      padding: EdgeInsets.only(
+                                                                          left: 15,
+                                                                          bottom: 10,
+                                                                          right: 15,
+                                                                          top: 20),
+                                                                      child: Column(children: [
+                                                                        Container(
+                                                                            child: Text(
+                                                                              course['shopName'],
+                                                                              style:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .headline3,
+                                                                            )),
+                                                                        Container(
+                                                                            child: Text(
+                                                                              '',
+                                                                              style: Theme.of(
+                                                                                  context)
+                                                                                  .textTheme
+                                                                                  .bodyText1
+                                                                                  .merge(TextStyle(
+                                                                                  fontFamily:
+                                                                                  'ProductSans-Thin')),
+                                                                            ))
+                                                                      ])),
+                                                                ),
+
+
+                                                                // Column(
+                                                                //     crossAxisAlignment:
+                                                                //     CrossAxisAlignment
+                                                                //         .end,
+                                                                //     children: [
+                                                                //       Container(
+                                                                //         padding: EdgeInsets
+                                                                //             .only(
+                                                                //             left: 15,
+                                                                //             right: 15,
+                                                                //             top: 20),
+                                                                //         child: Text(
+                                                                //             '#${course['orderId']}',
+                                                                //             style: Theme.of(
+                                                                //                 context)
+                                                                //                 .textTheme
+                                                                //                 .headline3),
+                                                                //       ),
+                                                                //       Container(
+                                                                //         padding:
+                                                                //         EdgeInsets
+                                                                //             .only(
+                                                                //           left: 15,
+                                                                //           right: 15,
+                                                                //         ),
+                                                                //         child: Text(
+                                                                //             '',
+                                                                //             style: Theme.of(
+                                                                //                 context)
+                                                                //                 .textTheme
+                                                                //                 .caption
+                                                                //                 .merge(TextStyle(
+                                                                //                 color: Theme.of(context)
+                                                                //                     .primaryColorDark,
+                                                                //                 fontWeight:
+                                                                //                 FontWeight.w600))),
+                                                                //       ),
+                                                                //     ]),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        child: Column(
+                                                          children: [
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                              crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                              children: [
+
+                                                                Expanded(
+                                                                  child: Container(
+                                                                      padding: EdgeInsets.only(
+                                                                          left: 15,
+                                                                          bottom: 10,
+                                                                          right: 15,
+                                                                          top: 20),
+                                                                      child: Column(children: [
+                                                                        Container(
+                                                                            child: Text(
+                                                                              course['userName'],
+                                                                              style:
+                                                                              Theme.of(context)
+                                                                                  .textTheme
+                                                                                  .headline3,
+                                                                            )),
+                                                                        Container(
+                                                                            child: Text(
+                                                                              '',
+                                                                              style: Theme.of(
+                                                                                  context)
+                                                                                  .textTheme
+                                                                                  .bodyText1
+                                                                                  .merge(TextStyle(
+                                                                                  fontFamily:
+                                                                                  'ProductSans-Thin')),
+                                                                            ))
+                                                                      ])),
+                                                                ),
+                                                                Container(
+                                                                  padding:
+                                                                  EdgeInsets.only(
+                                                                      left: 15,
+                                                                      right: 15,
+                                                                      top: 20),
+                                                                  child:
+                                                                  CachedNetworkImage(
+                                                                    imageUrl:
+                                                                    "${GlobalConfiguration().getString('base_upload')}uploads/vendor_image/vendor_${course['userId']}.png",
+                                                                    imageBuilder: (context, imageProvider) => Container(
+                                                                      height: MediaQuery.of(context).size.width*0.12,
+                                                                      width: MediaQuery.of(context).size.width*0.12,
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                                                                        image: DecorationImage(
+                                                                          image: imageProvider,
+                                                                          fit: BoxFit.cover,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    placeholder: (context,
+                                                                        url) =>
+                                                                        CircularProgressIndicator(),
+                                                                    errorWidget: (context,
+                                                                        url, error) =>
+                                                                        Icon(Icons.error),
+                                                                    height: 70,
+                                                                    width: 70,
+                                                                  ),
+                                                                ),
+
+
+                                                                // Column(
+                                                                //     crossAxisAlignment:
+                                                                //     CrossAxisAlignment
+                                                                //         .end,
+                                                                //     children: [
+                                                                //       Container(
+                                                                //         padding: EdgeInsets
+                                                                //             .only(
+                                                                //             left: 15,
+                                                                //             right: 15,
+                                                                //             top: 20),
+                                                                //         child: Text(
+                                                                //             '#${course['orderId']}',
+                                                                //             style: Theme.of(
+                                                                //                 context)
+                                                                //                 .textTheme
+                                                                //                 .headline3),
+                                                                //       ),
+                                                                //       Container(
+                                                                //         padding:
+                                                                //         EdgeInsets
+                                                                //             .only(
+                                                                //           left: 15,
+                                                                //           right: 15,
+                                                                //         ),
+                                                                //         child: Text(
+                                                                //             '',
+                                                                //             style: Theme.of(
+                                                                //                 context)
+                                                                //                 .textTheme
+                                                                //                 .caption
+                                                                //                 .merge(TextStyle(
+                                                                //                 color: Theme.of(context)
+                                                                //                     .primaryColorDark,
+                                                                //                 fontWeight:
+                                                                //                 FontWeight.w600))),
+                                                                //       ),
+                                                                //     ]),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                   Container(
                                                     padding: EdgeInsets.only(
                                                         left: 15,

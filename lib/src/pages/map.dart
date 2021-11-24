@@ -373,7 +373,11 @@ class _MapWidgetState extends StateMVC<MapWidget> {
                             //   widget.orderDetails.delivery_state = 'Delivered';
                             // });
 
-                            _con.sendOTP(widget.orderDetails.sale_code, widget.orderDetails.address.phone);
+                            _con.sendOTP(widget.orderDetails.sale_code, widget.orderDetails.address.phone,1);
+                            setState(() {
+                              _con.mobileno = widget.orderDetails.address.phone;
+                            });
+
                           }
                           else{
                             print("delivered success");

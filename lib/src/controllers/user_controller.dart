@@ -63,13 +63,13 @@ class UserController extends ControllerMVC {
             content: Text('wrong_email_or_password'),
           ));
         }
-      }).catchError((e) {
+      })/*.catchError((e) {
         loader.remove();
         // ignore: deprecated_member_use
         scaffoldKey?.currentState?.showSnackBar(SnackBar(
           content: Text(S.of(context).this_account_is_not_exist),
         ));
-      }).whenComplete(() {
+      })*/.whenComplete(() {
         Helper.hideLoader(loader);
       });
     }

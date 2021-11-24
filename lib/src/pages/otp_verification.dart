@@ -9,6 +9,7 @@ import 'package:products_deliveryboy/src/controllers/order_controller.dart';
 class OtpVerification extends StatefulWidget {
   OtpVerification({Key key,this.orderId}) : super(key: key);
   String orderId;
+  dynamic mobile;
 
   @override
   _OtpVerificationState createState() => _OtpVerificationState();
@@ -119,7 +120,10 @@ class _OtpVerificationState extends StateMVC<OtpVerification> {
 
                   SizedBox(width: 20,),
                   FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _con.sendOTP(widget.orderId, widget.mobile, 2);
+
+                      },
                       height: 40,
                       child: Text('Resend',
                           style: Theme.of(context).textTheme.bodyText1.merge(
