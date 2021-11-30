@@ -43,6 +43,21 @@ class OrderDetailsController extends ControllerMVC {
     });
   }
 
+  statusRejected(status,orderId,otp){
+    updateData(orderId, status);
+    repository.status(status, orderId, otp).then((value) {
+
+      Fluttertoast.showToast(
+        msg: 'Update Successfully',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 5,
+      );
+
+
+    });
+  }
+
   statusStart(status, orderId, otp, stateData, orderDetails) async {
       if(status=='Start') {
           if(currentUser.value.liveStatus==true ) {

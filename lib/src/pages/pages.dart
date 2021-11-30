@@ -146,7 +146,6 @@ class _PagesTestWidgetState extends State<PagesTestWidget>  with AfterLayoutMixi
 
   final player = AudioPlayer();
   Future loadCallMusic() async {
-
     await player.setAsset('assets/audio/calling.mp3');
     await player.play();
   }
@@ -239,7 +238,8 @@ class _ExitConfirmationDialograngerState extends StateMVC<ExitConfirmationDialog
                     RawMaterialButton(
                       onPressed: () async {
                         await widget.player.stop();
-                      //  _con.updateData(widget.course.id, 'rejected');
+                        _con.statusRejected('Rejected',widget.course['orderId'], '');
+                       // _con.updateData(widget.course.id, 'rejected');
                         return Navigator.of(context).pop(true);
                       },
                       elevation: 2.0,
